@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import "./search.style.scss";
 
-export default function Search({ handler }) {
+export default function Search({ handler, error }) {
+    const [value, setValue] = useState("");
     return (
         <div className="search">
             <h1>Search Movies</h1>
@@ -9,11 +10,11 @@ export default function Search({ handler }) {
                 type="text"
                 className="search-field"
                 placeholder="Search"
-                onChange={(e) => {
-                    handler(e.target.value);
-                }}
+                onInput={(e) => handler(e.target.value)}
             />
-            <p className="search-error-message">Incorrect IMDb ID.</p>
+            {error && (
+                <p className="search-error-message">Incorrect IMDb ID.</p>
+            )}
         </div>
     );
 }
