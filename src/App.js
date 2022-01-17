@@ -1,9 +1,12 @@
 import "./App.css";
 import { useState, useEffect } from "react";
+import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 import Search from "./components/search/search.component";
 import List from "./components/list/list.component";
+import MovieDescription from "./components/item/item.component";
 
 function App() {
+    const [search, setSearch] = useState("");
     const [listData, setListData] = useState([]);
     const [error, setError] = useState(false);
 
@@ -24,9 +27,9 @@ function App() {
 
     // This function is called everytime the user types something in the search bar
     const searchHandler = async (value) => {
-        console.log(value);
+        setSearch(value);
         const response = await fetch(
-            `/suggestion/${value[0].toLowerCase()}/${value.toLowerCase()}.json`
+            `/suggestion/${search[0].toLowerCase()}/${search.toLowerCase()}.json`
         );
         const data = await response.json();
         console.log(data);
@@ -43,10 +46,26 @@ function App() {
     }, []);
 
     return (
-        <div className="App">
-            <Search handler={searchHandler} error={error} />
-            <List listData={listData} />
-        </div>
+        <main className="App">
+            <Router>
+                <Routes>
+                    <Route
+                        exact
+                        path="/"
+                        element={
+                            <>
+                                <Search handler={searchHandler} error={error} />
+                                <List listData={listData} />
+                            </>
+                        }
+                    ></Route>
+                    <Route
+                        path="/movie/:title/:id"
+                        element={<MovieDescription />}
+                    ></Route>
+                </Routes>
+            </Router>
+        </main>
     );
 }
 

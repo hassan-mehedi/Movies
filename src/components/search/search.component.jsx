@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import "./search.style.scss";
 
 export default function Search({ handler, error }) {
-    const [value, setValue] = useState("");
     return (
         <div className="search">
             <h1>Search Movies</h1>

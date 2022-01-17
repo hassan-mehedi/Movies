@@ -6,7 +6,11 @@ export default function List({ listData }) {
         <div className="list">
             {listData.map((item, index) => {
                 return (
-                    <div className="list-item" key={index}>
+                    <a
+                        href={`/movie/${item.l}/${item.id}`}
+                        className="list-item"
+                        key={index}
+                    >
                         <img
                             src={
                                 item.hasOwnProperty("i")
@@ -24,7 +28,7 @@ export default function List({ listData }) {
                                 {item.y}
                             </p>
                         </div>
-                    </div>
+                    </a>
                 );
             })}
         </div>
