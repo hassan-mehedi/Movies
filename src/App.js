@@ -13,14 +13,17 @@ function App() {
     // Firt time the list is empty, so we need to add some data
     // This function is called only once to fill the list with batman movies
     const startingMovieList = async () => {
-        const response = await fetch(`/suggestion/b/batman.json`, {
-            method: "GET",
-            mode: "cors",
-            headers: {
-                "Content-Type":
-                    "application/x-www-form-urlencoded; charset=UTF-8",
-            },
-        });
+        const response = await fetch(
+            `https://v2.sg.media-imdb.com/suggestion/b/batman.json`,
+            {
+                method: "GET",
+                mode: "cors",
+                headers: {
+                    "Content-Type":
+                        "application/x-www-form-urlencoded; charset=UTF-8",
+                },
+            }
+        );
         const data = await response.json();
         setListData(data.d);
     };
@@ -29,7 +32,7 @@ function App() {
     const searchHandler = async (value) => {
         setSearch(value);
         const response = await fetch(
-            `/suggestion/${search[0].toLowerCase()}/${search.toLowerCase()}.json`
+            `https://v2.sg.media-imdb.com/suggestion/${search[0].toLowerCase()}/${search.toLowerCase()}.json`
         );
         const data = await response.json();
         console.log(data);

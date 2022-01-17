@@ -9,7 +9,7 @@ export default function MovieDescription(props) {
 
     const fetchData = async (title, id) => {
         const response = await fetch(
-            `/suggestion/${title[0].toLowerCase()}/${title.toLowerCase()}.json`
+            `https://v2.sg.media-imdb.com/suggestion/${title[0].toLowerCase()}/${title.toLowerCase()}.json`
         );
         const data = await response.json();
         const movies = data.d;
