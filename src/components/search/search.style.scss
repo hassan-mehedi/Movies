@@ -1,5 +1,4 @@
 .search {
-    // border: 1px solid black;
     padding-bottom: 20px;
     h1 {
         margin: 0;
@@ -13,6 +12,15 @@
         padding: 0 15px;
         border: none;
         border-radius: 5px;
+    }
+    &-button {
+        margin: 0 15px;
+        padding: 16px 26px;
+        color: #fff;
+        background-color: #49a6ea;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
     }
     &-error-message {
         color: darkred;

@@ -3,18 +3,16 @@ import { useParams, useNavigate } from "react-router-dom";
 import "./item.style.scss";
 
 export default function MovieDescription(props) {
-    const { title, id } = useParams();
+    const { id } = useParams();
     const navigate = useNavigate();
     const [movie, setMovie] = useState({});
 
-    const fetchData = async (title, id) => {
+    const fetchData = async (id) => {
         const response = await fetch(
-            `https://v2.sg.media-imdb.com/suggestion/${title[0].toLowerCase()}/${title.toLowerCase()}.json`
+            `https://imdb-api.com/en/API/Title/k_0hl1y74n/${id}`
         );
         const data = await response.json();
-        const movies = data.d;
-        const movie = movies.find((movie) => movie.id === id);
-        setMovie(movie);
+        setMovie(data);
     };
 
     const backToMoviesHandler = () => {
@@ -22,27 +20,18 @@ export default function MovieDescription(props) {
     };
 
     useEffect(() => {
-        fetchData(title, id);
+        fetchData(id);
     }, []);
-
-    console.log(movie);
 
     return (
         <div className="movie-description-container">
             <div className="image">
-                <img
-                    src={
-                        movie.hasOwnProperty("i")
-                            ? movie.i.imageUrl
-                            : "/no_image.jpg"
-                    }
-                    alt={movie.l}
-                />
+                <img src={movie.image} alt={movie.title} />
             </div>
             <div className="description">
-                <h1>{movie.l}</h1>
-                <p>Cast By: {movie.s}</p>
-                <h4>{movie.y}</h4>
+                <h1>{movie.title}</h1>
+                <p>Plot: {movie.plot}</p>
+                <h4>{movie.year}</h4>
                 <button className="return-button" onClick={backToMoviesHandler}>
                     Back to Movies
                 </button>

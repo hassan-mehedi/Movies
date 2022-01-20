@@ -7,25 +7,21 @@ export default function List({ listData }) {
             {listData.map((item, index) => {
                 return (
                     <a
-                        href={`/movie/${item.l}/${item.id}`}
+                        href={`/movie/${item.id}`}
                         className="list-item"
                         key={index}
                     >
                         <img
-                            src={
-                                item.hasOwnProperty("i")
-                                    ? item.i.imageUrl
-                                    : "/no_image.jpg"
-                            }
-                            alt={item.l}
+                            src={item.image}
+                            alt={item.title}
                             className="list-item-image"
                         />
                         <div className="list-item-description">
                             <h4 className="list-item-description-title">
-                                {item.l}
+                                {item.title}
                             </h4>
                             <p className="list-item-description-year">
-                                {item.y}
+                                {item.description}
                             </p>
                         </div>
                     </a>
