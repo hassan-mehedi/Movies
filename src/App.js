@@ -28,6 +28,7 @@ function App() {
         if (data.results.length === 0) {
             setError(true);
         } else {
+            setError(false);
             setListData(data.results);
         }
     };
